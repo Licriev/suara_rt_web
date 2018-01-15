@@ -1,26 +1,26 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.7.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 10 Jan 2018 pada 11.02
--- Versi Server: 5.6.20
--- PHP Version: 5.5.15
+-- Generation Time: 15 Jan 2018 pada 10.48
+-- Versi Server: 10.1.28-MariaDB
+-- PHP Version: 5.6.32
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `srt_db`
 --
-CREATE DATABASE IF NOT EXISTS `srt_db` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `srt_db`;
 
 -- --------------------------------------------------------
 
@@ -28,20 +28,19 @@ USE `srt_db`;
 -- Struktur dari tabel `srt_emergency`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_emergency` (
-`id_emergency` int(11) NOT NULL,
+CREATE TABLE `srt_emergency` (
+  `id_emergency` int(11) NOT NULL,
   `id_group` int(11) NOT NULL,
   `nama_kontak` varchar(100) NOT NULL,
   `telp` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_emergency`
 --
 
 INSERT INTO `srt_emergency` (`id_emergency`, `id_group`, `nama_kontak`, `telp`) VALUES
-(11, 5, 'Pemadam Kelaparan', '123123'),
-(12, 5, 'Dukun Beranak', '234243');
+(15, 7, 'polisi', '647364384738');
 
 -- --------------------------------------------------------
 
@@ -49,19 +48,22 @@ INSERT INTO `srt_emergency` (`id_emergency`, `id_group`, `nama_kontak`, `telp`) 
 -- Struktur dari tabel `srt_group`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_group` (
-`id_group` int(11) NOT NULL,
+CREATE TABLE `srt_group` (
+  `id_group` int(11) NOT NULL,
   `id_housing` int(11) NOT NULL,
   `rt` varchar(20) NOT NULL,
   `rw` varchar(20) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_group`
 --
 
 INSERT INTO `srt_group` (`id_group`, `id_housing`, `rt`, `rw`) VALUES
-(4, 6, '1', '6');
+(4, 6, '1', '6'),
+(5, 5, '05', '01'),
+(6, 7, '06', '09'),
+(7, 8, '09', '08');
 
 -- --------------------------------------------------------
 
@@ -69,13 +71,13 @@ INSERT INTO `srt_group` (`id_group`, `id_housing`, `rt`, `rw`) VALUES
 -- Struktur dari tabel `srt_housing`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_housing` (
-`id_housing` int(11) NOT NULL,
+CREATE TABLE `srt_housing` (
+  `id_housing` int(11) NOT NULL,
   `nama_housing` varchar(100) NOT NULL,
   `id_kota` int(11) NOT NULL,
   `kelurahan` varchar(100) DEFAULT NULL,
   `kecamatan` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_housing`
@@ -83,7 +85,80 @@ CREATE TABLE IF NOT EXISTS `srt_housing` (
 
 INSERT INTO `srt_housing` (`id_housing`, `nama_housing`, `id_kota`, `kelurahan`, `kecamatan`) VALUES
 (5, 'Komplek Coegs', 61, 'pondok kelapa', 'duren sawit 2'),
-(6, 'abcd', 4, 'asdf', 'daf');
+(6, 'abcd', 4, 'asdf', 'daf'),
+(7, 'perumahan bintara jaya', 26, 'bintara jaya', 'bekasi barat'),
+(8, 'kampung tambun', 103, 'tambun selatan', 'tambun');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `srt_icon`
+--
+
+CREATE TABLE `srt_icon` (
+  `id_icon` int(11) NOT NULL,
+  `nama_icon` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `srt_icon`
+--
+
+INSERT INTO `srt_icon` (`id_icon`, `nama_icon`) VALUES
+(1, 'ic_add_a_photo_black_24dp'),
+(2, 'ic_add_alert_black_24dp'),
+(3, 'ic_add_black_24dp'),
+(4, 'ic_add_to_photos_black_24dp'),
+(5, 'ic_announcement_black_24dp'),
+(6, 'ic_apps_black_24dp'),
+(7, 'ic_assessment_black_24dp'),
+(8, 'ic_assignment_black_24dp'),
+(9, 'ic_attachment_black_24dp'),
+(10, 'ic_backup_black_24dp'),
+(11, 'ic_build_black_24dp'),
+(12, 'ic_cached_black_24dp'),
+(13, 'ic_call_black_24dp'),
+(14, 'ic_chat_black_24dp'),
+(15, 'ic_chevron_left_black_24dp'),
+(16, 'ic_chevron_right_black_24dp'),
+(17, 'ic_comment_black_24dp'),
+(18, 'ic_create_black_24dp'),
+(19, 'ic_crop_original_black_24dp'),
+(20, 'ic_date_range_black_24dp'),
+(21, 'ic_delete_black_24dp'),
+(22, 'ic_equalizer_black_24dp'),
+(23, 'ic_favorite_black_24dp'),
+(24, 'ic_file_upload_black_24dp'),
+(25, 'ic_forum_black_24dp'),
+(26, 'ic_history_black_24dp'),
+(27, 'ic_home_black_24dp'),
+(28, 'ic_insert_emoticon_black_24dp'),
+(29, 'ic_insert_invitation_black_24dp'),
+(30, 'ic_library_add_black_24dp'),
+(31, 'ic_list_black_24dp'),
+(32, 'ic_loop_black_24dp'),
+(33, 'ic_mail_outline_black_24dp'),
+(34, 'ic_more_black_24dp'),
+(35, 'ic_new_releases_black_24dp'),
+(36, 'ic_notifications_black_24dp'),
+(37, 'ic_perm_media_black_24dp'),
+(38, 'ic_person_add_black_24dp'),
+(39, 'ic_person_black_24dp'),
+(40, 'ic_place_black_24dp'),
+(41, 'ic_power_settings_new_black_24dp'),
+(42, 'ic_question_answer_black_24dp'),
+(43, 'ic_record_voice_over_black_24dp'),
+(44, 'ic_remove_red_eye_black_24dp'),
+(45, 'ic_reply_black_24dp'),
+(46, 'ic_save_black_24dp'),
+(47, 'ic_send_black_24dp'),
+(48, 'ic_settings_black_24dp'),
+(49, 'ic_share_black_24dp'),
+(50, 'ic_thumb_up_black_24dp'),
+(51, 'ic_touch_app_black_24dp'),
+(52, 'ic_trending_up_black_24dp'),
+(53, 'ic_tune_black_24dp'),
+(54, 'ic_watch_later_black_24dp');
 
 -- --------------------------------------------------------
 
@@ -91,10 +166,10 @@ INSERT INTO `srt_housing` (`id_housing`, `nama_housing`, `id_kota`, `kelurahan`,
 -- Struktur dari tabel `srt_kota`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_kota` (
-`id_kota` int(11) NOT NULL,
+CREATE TABLE `srt_kota` (
+  `id_kota` int(11) NOT NULL,
   `nama_kota` varchar(100) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=103 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_kota`
@@ -200,7 +275,8 @@ INSERT INTO `srt_kota` (`id_kota`, `nama_kota`) VALUES
 (99, 'Sibolga'),
 (100, 'Tanjungbalai'),
 (101, 'Tebing Tinggi'),
-(102, 'Yogyakarta');
+(102, 'Yogyakarta'),
+(103, 'cikarang');
 
 -- --------------------------------------------------------
 
@@ -208,10 +284,10 @@ INSERT INTO `srt_kota` (`id_kota`, `nama_kota`) VALUES
 -- Struktur dari tabel `srt_role`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_role` (
-`id_role` int(11) NOT NULL,
+CREATE TABLE `srt_role` (
+  `id_role` int(11) NOT NULL,
   `nama_role` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_role`
@@ -228,13 +304,13 @@ INSERT INTO `srt_role` (`id_role`, `nama_role`) VALUES
 -- Struktur dari tabel `srt_thread`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_thread` (
-`id_thread` int(11) NOT NULL,
+CREATE TABLE `srt_thread` (
+  `id_thread` int(11) NOT NULL,
   `id_category` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `judul` varchar(100) NOT NULL,
   `tanggal_post` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -242,11 +318,11 @@ CREATE TABLE IF NOT EXISTS `srt_thread` (
 -- Struktur dari tabel `srt_thread_category`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_thread_category` (
-`id_category` int(11) NOT NULL,
+CREATE TABLE `srt_thread_category` (
+  `id_category` int(11) NOT NULL,
   `nama_category` varchar(100) NOT NULL,
   `parent_category` int(11) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_thread_category`
@@ -262,13 +338,13 @@ INSERT INTO `srt_thread_category` (`id_category`, `nama_category`, `parent_categ
 -- Struktur dari tabel `srt_thread_content`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_thread_content` (
-`id_content` int(11) NOT NULL,
+CREATE TABLE `srt_thread_content` (
+  `id_content` int(11) NOT NULL,
   `id_thread` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `content` text NOT NULL,
   `tanggal_post` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -276,13 +352,13 @@ CREATE TABLE IF NOT EXISTS `srt_thread_content` (
 -- Struktur dari tabel `srt_user`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_user` (
-`id_user` int(11) NOT NULL,
+CREATE TABLE `srt_user` (
+  `id_user` int(11) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` text NOT NULL,
   `role` int(11) NOT NULL,
   `status` int(11) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_user`
@@ -310,8 +386,8 @@ INSERT INTO `srt_user` (`id_user`, `email`, `password`, `role`, `status`) VALUES
 -- Struktur dari tabel `srt_warga`
 --
 
-CREATE TABLE IF NOT EXISTS `srt_warga` (
-`id_warga` int(11) NOT NULL,
+CREATE TABLE `srt_warga` (
+  `id_warga` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `nama` varchar(100) NOT NULL,
   `jk` tinyint(4) NOT NULL,
@@ -320,7 +396,7 @@ CREATE TABLE IF NOT EXISTS `srt_warga` (
   `no` varchar(50) NOT NULL,
   `id_group` int(11) NOT NULL,
   `type` smallint(6) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `srt_warga`
@@ -349,61 +425,67 @@ INSERT INTO `srt_warga` (`id_warga`, `id_user`, `nama`, `jk`, `tanggal_lahir`, `
 -- Indexes for table `srt_emergency`
 --
 ALTER TABLE `srt_emergency`
- ADD PRIMARY KEY (`id_emergency`);
+  ADD PRIMARY KEY (`id_emergency`);
 
 --
 -- Indexes for table `srt_group`
 --
 ALTER TABLE `srt_group`
- ADD PRIMARY KEY (`id_group`);
+  ADD PRIMARY KEY (`id_group`);
 
 --
 -- Indexes for table `srt_housing`
 --
 ALTER TABLE `srt_housing`
- ADD PRIMARY KEY (`id_housing`);
+  ADD PRIMARY KEY (`id_housing`);
+
+--
+-- Indexes for table `srt_icon`
+--
+ALTER TABLE `srt_icon`
+  ADD PRIMARY KEY (`id_icon`);
 
 --
 -- Indexes for table `srt_kota`
 --
 ALTER TABLE `srt_kota`
- ADD PRIMARY KEY (`id_kota`);
+  ADD PRIMARY KEY (`id_kota`);
 
 --
 -- Indexes for table `srt_role`
 --
 ALTER TABLE `srt_role`
- ADD PRIMARY KEY (`id_role`);
+  ADD PRIMARY KEY (`id_role`);
 
 --
 -- Indexes for table `srt_thread`
 --
 ALTER TABLE `srt_thread`
- ADD PRIMARY KEY (`id_thread`);
+  ADD PRIMARY KEY (`id_thread`);
 
 --
 -- Indexes for table `srt_thread_category`
 --
 ALTER TABLE `srt_thread_category`
- ADD PRIMARY KEY (`id_category`);
+  ADD PRIMARY KEY (`id_category`);
 
 --
 -- Indexes for table `srt_thread_content`
 --
 ALTER TABLE `srt_thread_content`
- ADD PRIMARY KEY (`id_content`);
+  ADD PRIMARY KEY (`id_content`);
 
 --
 -- Indexes for table `srt_user`
 --
 ALTER TABLE `srt_user`
- ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`);
 
 --
 -- Indexes for table `srt_warga`
 --
 ALTER TABLE `srt_warga`
- ADD PRIMARY KEY (`id_warga`);
+  ADD PRIMARY KEY (`id_warga`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -413,52 +495,69 @@ ALTER TABLE `srt_warga`
 -- AUTO_INCREMENT for table `srt_emergency`
 --
 ALTER TABLE `srt_emergency`
-MODIFY `id_emergency` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=13;
+  MODIFY `id_emergency` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `srt_group`
 --
 ALTER TABLE `srt_group`
-MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_group` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
 -- AUTO_INCREMENT for table `srt_housing`
 --
 ALTER TABLE `srt_housing`
-MODIFY `id_housing` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_housing` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `srt_icon`
+--
+ALTER TABLE `srt_icon`
+  MODIFY `id_icon` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+
 --
 -- AUTO_INCREMENT for table `srt_kota`
 --
 ALTER TABLE `srt_kota`
-MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=103;
+  MODIFY `id_kota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
+
 --
 -- AUTO_INCREMENT for table `srt_role`
 --
 ALTER TABLE `srt_role`
-MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `id_role` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `srt_thread`
 --
 ALTER TABLE `srt_thread`
-MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_thread` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `srt_thread_category`
 --
 ALTER TABLE `srt_thread_category`
-MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `srt_thread_content`
 --
 ALTER TABLE `srt_thread_content`
-MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_content` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `srt_user`
 --
 ALTER TABLE `srt_user`
-MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
 --
 -- AUTO_INCREMENT for table `srt_warga`
 --
 ALTER TABLE `srt_warga`
-MODIFY `id_warga` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id_warga` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
