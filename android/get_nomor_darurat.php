@@ -4,7 +4,8 @@
 
 	$id_group = $_POST['id_group'];
 
-	$query = "SELECT * FROM srt_emergency 
+	$query = "SELECT a.*,b.nama_icon FROM srt_emergency a
+		LEFT JOIN srt_icon b ON a.id_icon = b.id_icon 
 	 	where id_group='$id_group'";
 	$sql = mysqli_query($connect,$query);
 
@@ -19,6 +20,7 @@
 	        $cek['nama_kontak'] = $data['nama_kontak'];
 	        $cek['nama_kontak'] = $data['nama_kontak'];
 	        $cek['telp'] = $data['telp'];
+	        $cek['icon'] = $data['nama_icon'];
 	        array_push($response['emergency'], $cek);
 	    }
 

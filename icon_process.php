@@ -7,15 +7,12 @@
 
 		if($_POST['action']=='add'){
 
-			$nama_kontak = $_POST['nama_kontak'];
-			$telp = $_POST['telp'];
-			$id_group = $_POST['id_group'];
+			$nama_icon = $_POST['nama_icon'];
 			$id_icon = $_POST['id_icon'];
-			$id_emergency = $_POST['id_emergency'];
 
-			if($id_emergency>0){
+			if($id_icon>0){
 
-				$query = "UPDATE srt_emergency SET nama_kontak='$nama_kontak', telp='$telp', id_icon='$id_icon' WHERE id_emergency='$id_emergency'";
+				$query = "UPDATE srt_icon SET nama_icon='$nama_icon' WHERE id_icon='$id_icon'";
 				$sql = mysqli_query($connect,$query);
 
 				if($sql){
@@ -25,7 +22,7 @@
 				}
 
 			}else{
-				$query = "INSERT INTO srt_emergency VALUES('','$id_group','$nama_kontak','$telp','$id_icon')";
+				$query = "INSERT INTO srt_icon VALUES('','$nama_icon')";
 				$sql = mysqli_query($connect,$query);
 
 				if($sql){
@@ -45,12 +42,7 @@
 
 		if($_GET['action']=='get'){
 
-			if($_GET['group'] > 0){
-				$query = "SELECT a.*, b.* FROM srt_emergency a LEFT JOIN srt_icon b ON a.id_icon = b.id_icon WHERE a.id_group='".$_GET['group']."' ORDER BY a.nama_kontak ASC";				
-			}else{
-				$query = "SELECT a.*, b.* FROM srt_emergency a LEFT JOIN srt_icon b ON a.id_icon = b.id_icon ORDER BY a.nama_kontak ASC";				
-			}
-
+			$query = "SELECT * FROM srt_icon ORDER BY nama_icon ASC";
 			$sql = mysqli_query($connect,$query);
 
 			$data = array();
@@ -65,7 +57,7 @@
 
 			$id = $_GET['id'];
 
-			$query = "DELETE FROM srt_emergency WHERE id_emergency='$id'";
+			$query = "DELETE FROM srt_icon WHERE id_icon='$id'";
 			$sql = mysqli_query($connect,$query);
 
 			

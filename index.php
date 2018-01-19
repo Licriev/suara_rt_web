@@ -42,7 +42,10 @@
 
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">    
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">    
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <script src="assets/js/jquery.js"></script>
     <!-- <script src="assets/js/jquery-1.8.3.min.js"></script> -->
@@ -72,6 +75,7 @@
     <script type="text/javascript" src="assets/js/jquery-confirm.min.js"></script>
     <script src="assets/js/bootstrap-switch.js"></script>
     <script src="assets/js/bootstrap-datepicker.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -102,7 +106,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="<?php echo $base_url;?>" class="logo"><b>Suara RT</b></a>
+            <a href="<?php echo $base_url;?>" class="logo"><b> Suara RT</b></a>
             <!--logo end-->
             <div class="nav notify-row" id="top_menu">
                 <!--  notification start -->
@@ -170,6 +174,10 @@
 
                 case 'ndr':
                   include "nomor_darurat_manage.php";
+                  break;
+
+                case 'dic':
+                  include "icon_manage.php";
                   break;
 
                 default:

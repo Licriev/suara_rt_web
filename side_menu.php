@@ -17,10 +17,11 @@
           <span>References</span>
       </a>
       <ul class="sub">
-          <li><a  href="?pg=dct">Kota</a></li>
-          <li><a  href="?pg=dhs">Housing </a></li>
-          <li><a  href="?pg=dgp">Group</a></li>
-          <li><a  href="?pg=dtc">Thread Category</a></li>
+          <li><a href="?pg=dic">Icon</a></li>
+          <li><a href="?pg=dct">Kota</a></li>
+          <li><a href="?pg=dhs">Housing </a></li>
+          <li><a href="?pg=dgp">Group</a></li>
+          <li><a href="?pg=dtc">Thread Category</a></li>
       </ul>
   </li>
 

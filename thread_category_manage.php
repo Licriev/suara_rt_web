@@ -37,6 +37,25 @@
 					</div>
 				</div>
 
+				<?php 
+
+					$query = "SELECT * FROM srt_icon";
+					$sql = mysqli_query($connect,$query);
+
+				?>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" >Icon </label>
+					<div class="col-md-10">
+						<select class="form-control selectpicker" id="display_icon">
+							<option value="" selected disabled>-Pilih Icon-</option>
+							<?php while($data = mysqli_fetch_array($sql,MYSQLI_ASSOC)){ ?>
+								<option value="<?php echo $data['id_icon'];?>" data-content="<i class='material-icons'><?php echo str_replace("_black_24dp","",str_replace("ic_", "", $data['nama_icon']));?></i>  <?php echo $data['nama_icon'];?>"></option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+
 				<input type="hidden" id="id_category" value="0">
 				
 				<div class="form-group">
@@ -61,6 +80,7 @@
 					<tr>
 						<th width="5%"></th>
 						<th>Nama Category</th>
+						<th>Icon</th>
 						<th>Option</th>
 					</tr>
 				</thead>
@@ -108,6 +128,25 @@
 						</div>
 					</div>
 
+					<?php 
+
+						$query = "SELECT * FROM srt_icon";
+						$sql = mysqli_query($connect,$query);
+
+					?>
+
+					<div class="form-group">
+						<label class="control-label col-sm-4" >Icon </label>
+						<div class="col-md-8">
+							<select class="form-control selectpicker" id="display_icon_edit">
+								<option value="" selected disabled>-Pilih Icon-</option>
+								<?php while($data = mysqli_fetch_array($sql,MYSQLI_ASSOC)){ ?>
+									<option value="<?php echo $data['id_icon'];?>" data-content="<i class='material-icons'><?php echo str_replace("_black_24dp","",str_replace("ic_", "", $data['nama_icon']));?></i>  <?php echo $data['nama_icon'];?>"></option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+
 					<input type="hidden" id="id_category_edit">
 					
 					<div class="form-group">
@@ -150,9 +189,24 @@
 		            "targets": 1
 		        },
 		        {
+		        	"data":null,
+		        	"targets":2,
+		        	"width": "2%",
+		        	"render": function(data,type,full,meta){
+		        		if(full.id_icon>0){
+			        		var icon = full.nama_icon;
+			        		icon = icon.replace("ic_","");
+			        		icon = icon.replace("_black_24dp","");
+		        			return "<center><i class='material-icons'>"+icon+"</i></center>";
+			        	}
+
+			        	return "";
+		        	}
+		        },
+		        {
 		            "data":null,
 		            "width" : '5%',
-		            "targets": 2,
+		            "targets": 3,
 		            "render":function(data, type, full, meta ){
 		            	return '<center><button class="btn btn-info btn-xs edit-btn" title="edit data"><i class="fa fa-edit"></i></button></center>';
 		            }
@@ -228,6 +282,7 @@
 	        $('#id_category_edit').val(tbl.row($(this).parents('tr')).data().id_category);
 	        $('#parent_edit').val(tbl.row($(this).parents('tr')).data().parent_category).trigger('change');
 	        $('#nama_category_edit').val(tbl.row($(this).parents('tr')).data().nama_category);
+	        $('#display_icon_edit').val(tbl.row($(this).parents('tr')).data().id_icon).change();
 	    }); 
 	    
 	    select2trig();
@@ -255,6 +310,7 @@
 			        nama_category: $('#nama_category').val(),
 			        parent_category: $('#parent').val(),
 			        id_category : $('#id_category').val(),
+			        id_icon:$('#display_icon').val(),
 			        action:'add'
 			    },
 			    success: function(data){
@@ -283,6 +339,7 @@
 		        nama_category: $('#nama_category_edit').val(),
 		        parent_category: $('#parent').val(),
 		        id_category : $('#id_category_edit').val(),
+		        id_icon:$('#display_icon_edit').val(),
 		        action:'add'
 		    },
 		    success: function(data){
