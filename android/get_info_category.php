@@ -2,25 +2,21 @@
 	
 	include "../config/koneksi.php";
 
-	$id_group = $_POST['id_group'];
-
-	$query = "SELECT a.*,b.nama_icon FROM srt_emergency a
-		LEFT JOIN srt_icon b ON a.id_icon = b.id_icon 
-	 	where id_group='$id_group'";
+	$query = "SELECT a.*, b.nama_icon FROM srt_thread_category a
+				LEFT JOIN srt_icon b ON a.id_icon = b.id_icon";
 	$sql = mysqli_query($connect,$query);
 
 	$num = mysqli_num_rows($sql);
 
 	if($num > 0){
     	$response =array();
-    	$response ["emergency"] = array();
+    	$response ["info_cat"] = array();
  
 	    while ($data = mysqli_fetch_array($sql,MYSQLI_ASSOC)){
-	        $cek['id_emergency'] = $data['id_emergency'];
-	        $cek['nama_kontak'] = $data['nama_kontak'];
-	        $cek['telp'] = $data['telp'];
+	        $cek['id_category'] = $data['id_category'];
+	        $cek['nama_category'] = $data['nama_category'];
 	        $cek['icon'] = $data['nama_icon'];
-	        array_push($response['emergency'], $cek);
+	        array_push($response['info_cat'], $cek);
 	    }
 
 	    $response['success']= true ;
