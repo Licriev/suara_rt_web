@@ -7,7 +7,8 @@
 
 	$query = "SELECT a.*, b.nama as sender FROM srt_thread a
 				LEFT JOIN srt_warga b ON a.id_user = b.id_user
-				WHERE a.id_category='$category' AND a.id_group='$group'";
+				WHERE a.id_category='$category' AND a.id_group='$group'
+				ORDER BY id_thread DESC";
 	$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 
 	$num = mysqli_num_rows($sql);
