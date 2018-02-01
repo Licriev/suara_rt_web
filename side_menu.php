@@ -14,14 +14,14 @@
   <li class="sub-menu">
       <a href="javascript:;" class="<?php echo (in_array($_GET['pg'], $ref) ? 'active' : '');?>">
           <i class="fa fa-file-text"></i>
-          <span>References</span>
+          <span>Manajemen</span>
       </a>
       <ul class="sub">
           <li><a href="?pg=dic">Icon</a></li>
           <li><a href="?pg=dct">Kota</a></li>
           <li><a href="?pg=dhs">Housing </a></li>
-          <li><a href="?pg=dgp">Group</a></li>
-          <li><a href="?pg=dtc">Thread Category</a></li>
+          <li><a href="?pg=dgp">Group Housing</a></li>
+          <li><a href="?pg=dtc">Konten</a></li>
       </ul>
   </li>
 
@@ -43,7 +43,7 @@
   <li class="sub-menu">
       <a class="<?php echo ($_GET['pg']=='thm' ? 'active' : '');?>" href="?pg=thm">
           <i class="fa fa-calendar"></i>
-          <span>Thread Management</span>
+          <span>Isi Konten</span>
       </a>
   </li>
 </ul>

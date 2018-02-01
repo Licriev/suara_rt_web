@@ -1,4 +1,4 @@
-<h3><i class="fa fa-angle-right"></i> Management Thread Category</h3>
+<h3><i class="fa fa-angle-right"></i> Management Konten</h3>
 
 <div class="alert-div" style="display: none;">
 	<div class="alert alert-danger alert-dismissable">
@@ -10,12 +10,12 @@
 <div class="row mt">
 	<div class="col-lg-12">
 		<div class="showback">
-			<h4><i class="fa fa-angle-right"></i> Data Thread Category Baru</h4>
+			<h4><i class="fa fa-angle-right"></i> Data Konten Baru</h4>
 			<form class="form-horizontal" role="form" id="form_data">
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nama Thread Category *</label>
+					<label class="control-label col-sm-2">Nama Konten *</label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" id="nama_category" placeholder="Nama Category" required>
+						<input type="text" class="form-control" id="nama_category" placeholder="Nama Konten" required>
 					</div>
 				</div>
 
@@ -72,14 +72,14 @@
 	<div class="col-lg-12">
 		<div class="showback">
 			<h4>
-				<i class="fa fa-angle-right"></i> Data Thread Category  
+				<i class="fa fa-angle-right"></i> Data Konten  
 				<button type="button"  class="btn btn-xs btn-round btn-danger pull-right" id="deleteData" data-toggle="confirmation" data-singleton="true"><i class="fa fa-trash-o"></i> Hapus Data</button>
 			</h4>
 			<table class="table table-striped table-bordered" id="table-data">
 				<thead>
 					<tr>
 						<th width="5%"></th>
-						<th>Nama Category</th>
+						<th>Nama Konten</th>
 						<th>Icon</th>
 						<th>Option</th>
 					</tr>
@@ -103,7 +103,7 @@
 				
 				<form class="form-horizontal" role="form" id="form_data_edit">
 					<div class="form-group">
-						<label class="control-label col-sm-4">Nama Thread Category</label>
+						<label class="control-label col-sm-4">Nama Konten</label>
 						<div class="col-md-8">
 							<input type="text" class="form-control" id="nama_category_edit" placeholder="Nama Category" >
 						</div>

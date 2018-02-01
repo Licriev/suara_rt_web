@@ -7,7 +7,7 @@
 	$query = "SELECT a.*,b.nama_icon FROM srt_emergency a
 		LEFT JOIN srt_icon b ON a.id_icon = b.id_icon 
 	 	where id_group='$id_group'";
-	$sql = mysqli_query($connect,$query);
+	$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 
 	$num = mysqli_num_rows($sql);
 

@@ -144,7 +144,7 @@
 	<div class="col-lg-12">
 		<div class="showback">
 			<h4>
-				<i class="fa fa-angle-right"></i> Data Thread Category  
+				<i class="fa fa-angle-right"></i> Data User 
 				<button type="button"  class="btn btn-xs btn-round btn-danger pull-right" id="deleteData" data-toggle="confirmation" data-singleton="true"><i class="fa fa-trash-o"></i> Hapus Data</button>
 			</h4>
 			<table class="table table-striped table-bordered" id="table-data">
