@@ -5,7 +5,7 @@
 	$id_category = $_POST['category'];
 	$id_group = $_POST['group'];
 
-	$query = "SELECT a.* FROM srt_thread WHERE id_category='$id_category' AND id_group='$id_group'";
+	$query = "SELECT * FROM srt_thread WHERE id_category='$id_category' AND id_group='$id_group'";
 	$sql = mysqli_query($connect,$query);
 
 	$num = mysqli_num_rows($sql);
