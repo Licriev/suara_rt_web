@@ -5,7 +5,7 @@
 	$email = $_POST['email'];
 	$password = md5($_POST['password']);
 
-	$query = "SELECT a.id_user, a.email, a.role, b.id_warga, b.nama, b.id_group, b.type as jenis_warga FROM srt_user a
+	$query = "SELECT a.id_user, a.email, a.role, b.id_warga, b.nama, b.id_group, b.type as jenis_warga, b.tanggal_lahir, b.jk FROM srt_user a
 		LEFT JOIN srt_warga b ON a.id_user = b.id_user
 	 	where email='$email' AND password='$password' LIMIT 1";
 	$sql = mysqli_query($connect,$query);
@@ -24,6 +24,8 @@
 	        $cek['id_warga'] = $data['id_warga'];
 	        $cek['id_group'] = $data['id_group'];
 	        $cek['jenis_warga'] = $data['jenis_warga'];
+	        $cek['tanggal_lahir'] = date('d-m-Y', strtotime($data['tanggal_lahir']));
+	        $cek['jenis_kelamin'] = $data['jk'];
 	        array_push($response['user'], $cek);
 	    }
 
