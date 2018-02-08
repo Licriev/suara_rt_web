@@ -169,7 +169,7 @@
                   break;
 
                 case "thm":
-                  include "thread_manage.php";
+                  include "thread_manage_ajax.php";
                   break;
 
                 case 'ndr':
@@ -178,6 +178,10 @@
 
                 case 'dic':
                   include "icon_manage.php";
+                  break;
+
+                case 'dth':
+                  include "thread_detail.php";
                   break;
 
                 default:

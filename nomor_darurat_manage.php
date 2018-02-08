@@ -296,12 +296,18 @@
 	        $('#display_icon_edit').val(tbl.row($(this).parents('tr')).data().id_icon).change();
 	    }); 
 	    
-	  
+	  	
+	  	select2trig();
 	    	
 
 	});
 
-
+	
+	function select2trig(){
+		$("#group_user").select2({
+		    placeholder: "Pilih Group Housing",
+	    });
+	}
 
 	function saveData(){
 

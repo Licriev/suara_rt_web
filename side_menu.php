@@ -21,7 +21,7 @@
           <li><a href="?pg=dct">Kota</a></li>
           <li><a href="?pg=dhs">Housing </a></li>
           <li><a href="?pg=dgp">Group Housing</a></li>
-          <li><a href="?pg=dtc">Konten</a></li>
+          <li><a href="?pg=dtc">Kategori Informasi</a></li>
       </ul>
   </li>
 
@@ -43,7 +43,7 @@
   <li class="sub-menu">
       <a class="<?php echo ($_GET['pg']=='thm' ? 'active' : '');?>" href="?pg=thm">
           <i class="fa fa-calendar"></i>
-          <span>Isi Konten</span>
+          <span>Informasi Warga</span>
       </a>
   </li>
 </ul>
