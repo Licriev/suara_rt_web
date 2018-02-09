@@ -22,6 +22,8 @@
 	
 
 	}else{
+		
+
 		$code = sprintf("%06d", mt_rand(1, 999999));
 
 		$expire = date('Y-m-d H:i',strtotime("+10 minutes"));
@@ -35,7 +37,7 @@
 		$data = mysqli_fetch_array($sql,MYSQLI_ASSOC);
 
 
-		$to = "embowth@gmail.com";
+		$to = $data['email'];
 		$subject = "Kode verifikasi pemilihan RT";
 
 		$message = "
