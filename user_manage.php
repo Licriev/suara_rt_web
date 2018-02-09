@@ -64,7 +64,7 @@
 				</div>
 
 				<?php if($_SESSION['role_usr']!=1){ ?>
-					<input type="hidden" name="group_housing" id="group_housing_edit" value="<?php echo $_SESSION['id_group_usr'];?>">
+					<input type="hidden" name="group_housing" id="group_housing" value="<?php echo $_SESSION['id_group_usr'];?>">
 				<?php }else{ ?>
 
 					<?php 
@@ -541,9 +541,11 @@
 	});
 
 	function select2trig(){
-			$("#group_housing").select2({
-			    placeholder: "Pilih Group Housing",
-		    });
+			<?php if($_SESSION['role_usr']==1){ ?>
+				$("#group_housing").select2({
+				    placeholder: "Pilih Group Housing",
+			    });
+			<?php } ?>
 
 
 		<?php if($_SESSION['role_usr']==1){ ?>
