@@ -12,7 +12,7 @@
 		$query = "SELECT * FROM srt_layanan WHERE id_user='$id_user'";
 	}
 	
-	$sql = mysqli_query($connect,$query);
+	$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 
 	$num = mysqli_num_rows($sql);
 
