@@ -41,7 +41,7 @@
 	<div class="col-lg-12">
 		<div class="showback">
 			<h4><i class="fa fa-angle-right"></i> Informasi</h4>
-			<form class="form-horizontal" role="form" id="form_data">
+			<form class="form-horizontal" role="form" id="forms">
 				<div class="form-group">
 					<label class="control-label col-sm-2">Periode Pemilihan</label>
 					<label class="control-label col-sm-10">: <?php echo $data_sesi['periode_pemilihan'];?></label>
