@@ -53,6 +53,11 @@
 			$ketua_rt = $_POST['ketua_rt'];
 			$id_warga = $_POST['id_warga'];
 
+			if($ketua_rt==1){
+				$query = "UPDATE srt_warga SET type='0' WHERE id_group='$group'";
+				$sql = mysqli_query($connect,$query);
+			}
+
 			$query = "UPDATE srt_warga SET nama='$nama', jk='$jk',tanggal_lahir='$tanggal_lahir',blok='$blok',no='$no',id_group='$group',type='$ketua_rt' WHERE id_warga='$id_warga'";
 			$sql = mysqli_query($connect,$query);
 
@@ -119,10 +124,17 @@
 
 			}else{
 				echo json_encode(array('result' => false,'msg'=>'Reset password tidak berhasil!'));
-			}
+			}		
 
-			
+		}elseif($_POST['action']=='check_type'){
 
+			$id = $_POST['id_user'];
+
+			$query = "SELECT type FROM srt_warga WHERE id_user='$id'";
+			$sql = mysqli_query($connect,$query);
+
+			$data = mysqli_fetch_array($sql,MYSQLI_ASSOC);
+			echo json_encode(array('result'=>true, 'type'=>$data['type']));
 		}
 
 	}

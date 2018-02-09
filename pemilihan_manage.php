@@ -1,4 +1,4 @@
-<h3><i class="fa fa-angle-right"></i> Management Nomor Darurat</h3>
+<h3><i class="fa fa-angle-right"></i> Management Sesi Pemilihan Ketua RT</h3>
 
 <div class="alert-div" style="display: none;">
 	<div class="alert alert-danger alert-dismissable">
@@ -7,24 +7,28 @@
 	</div>
 </div>
 
-<div class="row mt">
+<div class="row mt" id="btn-row">
+	<div class="col-md-12">
+		<a href="javascript:;" class="btn btn-info" id="add-data"><i class="fa fa-plus"></i> Tambah Sesi Pemilihan</a>
+	</div>
+</div>
+
+<div class="row mt" id="form-row" style="display: none;">
 	<div class="col-lg-12">
 		<div class="showback">
-			<h4><i class="fa fa-angle-right"></i> Data Nomor Darurat Baru</h4>
+			<h4><i class="fa fa-angle-right"></i> Sesi Pemilihan Baru</h4>
 			<form class="form-horizontal" role="form" id="form_data">
 				<div class="form-group">
-					<label class="control-label col-sm-2">Nama Kontak *</label>
+					<label class="control-label col-sm-2">Periode Pemilihan <span class="required">*</span></label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" id="nama_kontak" placeholder="Nama Kontak" required>
+						<input type="text" class="form-control" id="periode_pemilihan" placeholder="Periode Pemilihan" required>
 					</div>
 				</div>
 
-				<input type="hidden" id="id_emergency" value="0">
-
 				<div class="form-group">
-					<label class="control-label col-sm-2">Telp *</label>
+					<label class="control-label col-sm-2">Waktu Pemilihan <span class="required">*</span></label>
 					<div class="col-md-10">
-						<input type="text" class="form-control" id="nomor_telp" placeholder="Nomor Telepon / HP" required>
+						<input type="text" class="form-control" id="waktu_pemilihan" placeholder="Waktu Pemilihan" required>
 					</div>
 				</div>
 
@@ -50,31 +54,14 @@
 				<?php }else{ ?>
 					<input type="hidden" id="group_user" value="<?php echo $_SESSION['id_group_usr'];?>">
 				<?php } ?>
-
-
-				<?php 
-
-					$query = "SELECT * FROM srt_icon";
-					$sql = mysqli_query($connect,$query);
-
-				?>
-
-				<div class="form-group">
-					<label class="control-label col-sm-2" >Icon </label>
-					<div class="col-md-10">
-						<select class="form-control selectpicker" id="display_icon">
-							<option value="" selected disabled>-Pilih Icon-</option>
-							<?php while($data = mysqli_fetch_array($sql,MYSQLI_ASSOC)){ ?>
-								<option value="<?php echo $data['id_icon'];?>" data-content="<i class='material-icons'><?php echo str_replace("_black_24dp","",str_replace("ic_", "", $data['nama_icon']));?></i>  <?php echo $data['nama_icon'];?>"></option>
-							<?php } ?>
-						</select>
-					</div>
-				</div>
 				
+				<input type="hidden" id="id_user" value="<?php echo $_SESSION['user_id_usr'];?>">
 				
 				<div class="form-group">
 					<div class="col-md-10 col-md-offset-2">
 						<button type="button" class="btn btn-theme" id="ins-btn" onclick="saveData();">Submit</button>
+						<button type="button" class="btn btn-warning" id="close-add">Close</button>
+
 					</div>
 				</div>
 			</form>
@@ -86,17 +73,17 @@
 	<div class="col-lg-12">
 		<div class="showback">
 			<h4>
-				<i class="fa fa-angle-right"></i> Data Nomor Darurat  
+				<i class="fa fa-angle-right"></i> Data User 
 				<button type="button"  class="btn btn-xs btn-round btn-danger pull-right" id="deleteData" data-toggle="confirmation" data-singleton="true"><i class="fa fa-trash-o"></i> Hapus Data</button>
 			</h4>
 			<table class="table table-striped table-bordered" id="table-data">
 				<thead>
 					<tr>
 						<th width="5%"></th>
-						<th>Nama Kontak</th>
-						<th>Telp</th>
-						<th>Icon</th>
-						<th>Option</th>
+						<th>Periode Pemilihan</th>
+						<th>Waktu Mulai</th>
+						<th>Waktu Selesai</th>
+						<th>Options</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -118,40 +105,22 @@
 				
 				<form class="form-horizontal" role="form" id="form_data_edit">
 					<div class="form-group">
-						<label class="control-label col-sm-3">Nama Kontak *</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" id="nama_kontak_edit" placeholder="Nama Kontak" required>
+						<label class="control-label col-sm-2">Periode Pemilihan <span class="required">*</span></label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="periode_pemilihan_edit" placeholder="Periode Pemilihan" required>
 						</div>
 					</div>
-
-					<input type="hidden" id="id_emergency_edit">
 
 					<div class="form-group">
-						<label class="control-label col-sm-3">Telp *</label>
-						<div class="col-md-9">
-							<input type="text" class="form-control" id="nomor_telp_edit" placeholder="Nomor Telepon / HP" required>
+						<label class="control-label col-sm-2">Waktu Pemilihan <span class="required">*</span></label>
+						<div class="col-md-10">
+							<input type="text" class="form-control" id="waktu_pemilihan_edit" placeholder="Waktu Pemilihan" required>
 						</div>
 					</div>
+
+					<input type="hidden" id="id_sesi_pemilihan">
 					
-					<?php 
-
-						$query = "SELECT * FROM srt_icon";
-						$sql = mysqli_query($connect,$query);
-
-					?>
-
-					<div class="form-group">
-						<label class="control-label col-sm-3" >Icon </label>
-						<div class="col-md-9">
-							<select class="form-control selectpicker" id="display_icon_edit">
-								<option value="" selected disabled>-Pilih Icon-</option>
-								<?php while($data = mysqli_fetch_array($sql,MYSQLI_ASSOC)){ ?>
-									<option value="<?php echo $data['id_icon'];?>" data-content="<i class='material-icons'><?php echo str_replace("_black_24dp","",str_replace("ic_", "", $data['nama_icon']));?></i>  <?php echo $data['nama_icon'];?>"></option>
-								<?php } ?>
-							</select>
-						</div>
-					</div>
-
+					
 					<div class="form-group">
 						<div class="col-md-9 col-md-offset-3">
 							<button type="button" class="btn btn-theme" id="ins-btn" onclick="editData();">Submit</button>
@@ -164,25 +133,46 @@
 	</div>
 </div>
 
+
+
 <script type="text/javascript">
 
 	var tbl;
 	var notif;
 	var group = 0;
+
+	<?php if($_SESSION['role_usr']!=1){?>
+		group = "<?php echo $_SESSION['id_group_usr'];?>";
+	<?php } ?>
 	
 	jQuery(document).ready(function($) {
-		
-		<?php if($_SESSION['role_usr']!=1){?>
-			group = "<?php echo $_SESSION['id_group_usr'];?>";
-		<?php } ?>
+
+
+	    $('#waktu_pemilihan,#waktu_pemilihan_edit').daterangepicker({
+	        timePicker: true,
+	        timePickerIncrement: 30,
+	        "timePicker24Hour": true,
+	        "timePickerIncrement": 5,
+	        locale: {
+	            format: 'DD-MM-YYYY h:mm'
+	        }
+	    });
+
 
 		tbl= $('#table-data').DataTable( {
 			bJQueryUI: true,
 			sPaginationType: "full_numbers",
-		    "ajax" : "nomor_darurat_process.php?action=get&group="+group,
+		    "ajax" : "pemilihan_process.php?action=get&group="+group,
 		    select: {
 		        style: 'multi+shift',
 		    },
+		    columns:[
+		    	{"data":null,"defaultContent":""},
+		    	{"data":"periode_pemilihan"},
+		    	{"data":"tgl_mulai"},
+		    	{"data":"tgl_selesai"},
+		    	{"data":null,"defaultContent":""}
+		    ],
 		    columnDefs: [                
 		        {
 		            "orderable": false,
@@ -191,35 +181,21 @@
 		            "data":null,
 		            "defaultContent": ""
 		        },
-		        {
-		            "data":"nama_kontak",
-		            "targets": 1
-		        },
-		        {
-		            "data":"telp",
-		            "targets": 2
-		        },
-		        {
-		        	"data":null,
-		        	"targets":3,
-		        	"width": "2%",
-		        	"render": function(data,type,full,meta){
-		        		if(full.id_icon>0){
-			        		var icon = full.nama_icon;
-			        		icon = icon.replace("ic_","");
-			        		icon = icon.replace("_black_24dp","");
-		        			return "<center><i class='material-icons'>"+icon+"</i></center>";
-			        	}
-
-			        	return "";
-		        	}
-		        },
+		       	{
+		       		"targets":1,
+		       		"render":function(data,type,full,meta){
+		       			return "<a href='?pg=dpkr&id="+full.id_sesi_pemilihan+"'>"+data+"</a>";
+		       		}
+		       	},
 		        {
 		            "data":null,
-		            "width" : '5%',
+		            "width" : '10%',
 		            "targets": 4,
 		            "render":function(data, type, full, meta ){
-		            	return '<center><button class="btn btn-info btn-xs edit-btn" title="edit data"><i class="fa fa-edit"></i></button></center>';
+		            	var editWarga = '<button class="btn btn-info btn-xs edit-btn" title="edit data"><i class="fa fa-edit"></i></button> ';
+	
+
+		            	return '<center>' + editWarga+'</center>';
 		            }
 		        },
 		    ],
@@ -227,7 +203,7 @@
 		        style:    'os',
 		        selector: 'td:first-child'
 		    },
-		    order: [[ 1, 'asc' ]]
+		    
 		});
 
 	    
@@ -249,8 +225,8 @@
             	    buttons: {
             	        confirm: function () {
             	            for (var i = 0; i <= count - 1; i++) {
-                                var did=item[i]['id_emergency'];
-                                $.post( 'nomor_darurat_process.php?action=del&id=' + did).success(function(data){
+                                var did=item[i]['id_sesi_pemilihan'];
+                                $.post( 'pemilihan_process.php?action=del&id=' + did).success(function(data){
                                 	var result = jQuery.parseJSON(data);
 
                                 	tbl.ajax.reload(); 
@@ -290,46 +266,113 @@
 
         $('#table-data tbody').on('click', '.edit-btn', function () {
 	        $('#edit-modal').modal();
-	        $('#id_emergency_edit').val(tbl.row($(this).parents('tr')).data().id_emergency);
-	        $('#nama_kontak_edit').val(tbl.row($(this).parents('tr')).data().nama_kontak);
-	        $('#nomor_telp_edit').val(tbl.row($(this).parents('tr')).data().telp);
-	        $('#display_icon_edit').val(tbl.row($(this).parents('tr')).data().id_icon).change();
-	    }); 
+	        $('#periode_pemilihan_edit').val(tbl.row($(this).parents('tr')).data().periode_pemilihan);
+	        $('#waktu_pemilihan_edit').val(tbl.row($(this).parents('tr')).data().tgl_mulai+" - "+tbl.row($(this).parents('tr')).data().tgl_selesai);
+	        $('#id_sesi_pemilihan').val(tbl.row($(this).parents('tr')).data().id_sesi_pemilihan)
+	    });
+
 	    
-	  	<?php if($_SESSION['role_usr'] == 1){ ?>
-	  		select2trig();
-	    <?php } ?>
+	   	select2trig();		
+	    
+	    
+	    $('#add-data').click(function(event) {
+	    	$('#btn-row').fadeOut('fast');
+	    	$("#form-row").fadeIn('fast');
+	    });
+
+	    $('#close-add').click(function(event) {
+	    	$('#btn-row').fadeIn('fast');
+	    	$("#form-row").fadeOut('fast');
+	    });
+
+	    $('#table-data tbody').on('click','.reset-passwd',function(){
+	    	var id_user = tbl.row($(this).parents('tr')).data().id_user;
+	    	$.confirm({
+	    		theme: 'bootstrap',
+	    	    title: 'Reset Password',
+	    	    content: 'Reset Password User '+tbl.row($(this).parents('tr')).data().nama+'?',
+	    	    icon: 'fa fa-warning',
+	    	    buttons: {
+	    	        confirm: function () {
+
+	        			$.ajax({
+	        			    url: 'user_process.php',
+	        			    type: 'POST',
+	        			    data: {
+	        			    	id_user: id_user,
+	        			        action:'reset'
+	        			    },
+	        			    success: function(data){
+
+	        			    	var result = jQuery.parseJSON(data);
+
+	        			        tbl.ajax.reload();
+
+	        			        $.gritter.add({
+	        		                // (string | mandatory) the heading of the notification
+	        		                title: 'Ubah Data',
+	        		                sticky: false,
+	        	                    time: '5000',
+	        	                    text: result.msg,
+	        		            });
+	        			    }
+	        			});
+
+
+		            	
+	                    
+	                	
+	    	        },
+	    	        cancel: function () {
+	    	            
+	    	        },
+	    	    }
+	    	});
+	    });
 
 	});
 
-	
 	function select2trig(){
-		$("#group_user").select2({
-		    placeholder: "Pilih Group Housing",
-	    });
+			$("#group_housing").select2({
+			    placeholder: "Pilih Group Housing",
+		    });
+
+
+		<?php if($_SESSION['role_usr']==1){ ?>
+		    $("#role").select2({
+		    	placeholder: "Pilih User Role"
+		    })
+	    <?php } ?>
 	}
+
+
 
 	function saveData(){
 
-		if($('#nama_kontak').val()=='' || $('#nomor_telp').val()=='' || $('#group_user').val() <= 0){
+		if($('#periode_pemilihan').val()=='' || $('#waktu_pemilihan').val()=='' || $('#group_user').val()==''){
 			$('.alert-div').fadeIn('slow');
 		}else{
+
 			$.ajax({
-			    url: 'nomor_darurat_process.php',
+			    url: 'pemilihan_process.php',
 			    type: 'POST',
 			    data: {
-			        nama_kontak: $('#nama_kontak').val(),
-			        telp:$('#nomor_telp').val(),
-			        id_emergency : $('#id_emergency').val(),
-			        id_group:$('#group_user').val(),
-			        id_icon:$('#display_icon').val(),
+			        periode_pemilihan: $('#periode_pemilihan').val(),
+			        waktu_pemilihan: $('#waktu_pemilihan').val(),
+			        group_user: $('#group_user').val(),
+			        id_user:$("#id_user").val(),
+			        id_pemilihan:0,
 			        action:'add'
 			    },
 			    success: function(data){
 			    	var result = jQuery.parseJSON(data);
-			        document.getElementById("form_data").reset();		        
-			      	$('#display_icon').val("").change();
-			        tbl.ajax.reload();
+
+			    	if(result.result){
+				        document.getElementById("form_data").reset();		        
+				        select2trig();
+				        tbl.ajax.reload();
+
+			    	}
 
 			        $.gritter.add({
 		                // (string | mandatory) the heading of the notification
@@ -344,15 +387,16 @@
 	}
 
 	function editData(){
+
 		$.ajax({
-		    url: 'nomor_darurat_process.php',
+		    url: 'pemilihan_process.php',
 		    type: 'POST',
 		    data: {
-		        nama_kontak: $('#nama_kontak_edit').val(),
-		        telp:$('#nomor_telp_edit').val(),
-		        id_emergency : $('#id_emergency_edit').val(),
-		        id_group:"0",
-		        id_icon:$('#display_icon_edit').val(),
+		    	periode_pemilihan: $('#periode_pemilihan_edit').val(),
+			        waktu_pemilihan: $('#waktu_pemilihan_edit').val(),
+			        group_user: $('#group_user').val(),
+			        id_user:$("#id_user").val(),
+			        id_pemilihan:$('#id_sesi_pemilihan').val(),
 		        action:'add'
 		    },
 		    success: function(data){
@@ -360,7 +404,7 @@
 		    	var result = jQuery.parseJSON(data);
 
 		        document.getElementById("form_data_edit").reset();
-		      
+		        select2trig();
 		        tbl.ajax.reload();
 		        $('#edit-modal').modal('toggle');
 
@@ -371,7 +415,13 @@
                     time: '5000',
                     text: result.msg,
 	            });
+
 		    }
 		});
 	}
+
+	
+
+
+
 </script>

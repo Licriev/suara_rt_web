@@ -46,4 +46,11 @@
           <span>Informasi Warga</span>
       </a>
   </li>
+
+  <li class="sub-menu">
+      <a class="<?php echo ($_GET['pg']=='pkr' ? 'active' : '');?>" href="?pg=pkr">
+          <i class="fa fa-comments-o"></i>
+          <span>Pemilihan Ketua RT</span>
+      </a>
+  </li>
 </ul>

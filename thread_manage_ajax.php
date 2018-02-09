@@ -209,7 +209,9 @@
 	        $('#display_icon_edit').val(tbl.row($(this).parents('tr')).data().id_icon).change();
 	    }); 
 	    
-	    select2trig();
+	    <?php if($_SESSION['role_usr'] == 1){ ?>
+	    	select2trig();
+	    <?php } ?>
 	    	
 
 	});

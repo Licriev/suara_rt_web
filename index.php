@@ -43,7 +43,9 @@
     <link rel="stylesheet" type="text/css" href="assets/css/custom.css">
 
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">    
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap-select.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/daterangepicker.css">    
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -76,6 +78,9 @@
     <script src="assets/js/bootstrap-switch.js"></script>
     <script src="assets/js/bootstrap-datepicker.js"></script>
     <script src="assets/js/bootstrap-select.min.js"></script>
+
+    <script src="assets/js/moment.min.js"></script>
+    <script src="assets/js/daterangepicker.js"></script>
     
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -182,6 +187,14 @@
 
                 case 'dth':
                   include "thread_detail.php";
+                  break;
+
+                case 'pkr':
+                  include "pemilihan_manage.php";
+                  break;
+
+                case 'dpkr':
+                  include "pemilihan_detail.php";
                   break;
 
                 default:

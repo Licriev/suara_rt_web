@@ -64,7 +64,7 @@
 				</div>
 
 				<?php if($_SESSION['role_usr']!=1){ ?>
-					<input type="hidden" name="group_housing" value="<?php echo $_SESSION['id_group_usr'];?>">
+					<input type="hidden" name="group_housing" id="group_housing_edit" value="<?php echo $_SESSION['id_group_usr'];?>">
 				<?php }else{ ?>
 
 					<?php 
@@ -216,7 +216,7 @@
 					</div>
 
 					<?php if($_SESSION['role_usr']!=1){ ?>
-						<input type="hidden" name="group_housing_edit" value="<?php echo $_SESSION['id_group_usr'];?>">
+						<input type="hidden" name="group_housing_edit"  value="<?php echo $_SESSION['id_group_usr'];?>">
 					<?php }else{ ?>
 
 						<?php 
@@ -479,7 +479,9 @@
 	    	$('#id_user_edit').val(tbl.row($(this).parents('tr')).data().id_user);
 	    });
 	    
-	    select2trig();
+	    
+	   	select2trig();		
+	    
 	    
 	    $('#add-data').click(function(event) {
 	    	$('#btn-row').fadeOut('fast');
@@ -539,9 +541,10 @@
 	});
 
 	function select2trig(){
-		$("#group_housing").select2({
-		    placeholder: "Pilih Group Housing",
-	    });
+			$("#group_housing").select2({
+			    placeholder: "Pilih Group Housing",
+		    });
+
 
 		<?php if($_SESSION['role_usr']==1){ ?>
 		    $("#role").select2({
@@ -587,6 +590,7 @@
 				        document.getElementById("form_data").reset();		        
 				        select2trig();
 				        tbl.ajax.reload();
+
 			    	}
 
 			        $.gritter.add({
@@ -639,6 +643,9 @@
                     time: '5000',
                     text: result.msg,
 	            });
+
+	        
+	            check_type();
 		    }
 		});
 	}
@@ -670,6 +677,25 @@
                     time: '5000',
                     text: result.msg,
 	            });
+		    }
+		});
+	}
+
+	function check_type(){
+		$.ajax({
+		    url: 'user_process.php',
+		    type: 'POST',
+		    data: {
+		    	id_user:"<?php echo $_SESSION['user_id_usr'];?>",
+		        action:'check_type'
+		    },
+		    success: function(data){
+
+		    	var result = jQuery.parseJSON(data);
+
+		        if(result.type==0){
+		        	window.location.replace("logout.php");
+		        }
 		    }
 		});
 	}
