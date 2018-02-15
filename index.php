@@ -197,6 +197,10 @@
                   include "pemilihan_detail.php";
                   break;
 
+                case 'lrt':
+                  include "layanan_manage.php";
+                  break;
+
                 default:
 
                   break;

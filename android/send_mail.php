@@ -43,7 +43,7 @@
 		$message = "
 		<html>
 		<head>
-		<title>HTML email</title>
+		<title>Kode verifikasi pemilihan</title>
 		</head>
 		<body>
 		<p>Kode Verifikasi Anda Adalah</p>

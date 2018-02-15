@@ -4,10 +4,10 @@
 
 	$id_sesi = $_POST['id_sesi'];
 
-	$query = "SELECT a.*, b.nama, c.jumlah_suara FROM srt_suara_masuk a
-                LEFT JOIN srt_warga b ON a.id_kandidat_pemilihan= b.id_user
-                LEFT JOIN (SELECT COUNT(*)  as jumlah_suara, id_kandidat_pemilihan FROM srt_suara_masuk GROUP BY id_kandidat_pemilihan) c ON a.id_kandidat_pemilihan=c.id_kandidat_pemilihan
-                WHERE id_sesi_pemilihan='$id_sesi'";
+	$query = "SELECT a.*, b.nama, IFNULL(c.jumlah_suara,0) as jumlah_suara FROM srt_kandidat_pemilihan a 
+            LEFT JOIN srt_warga b ON a.id_user=b.id_user
+            LEFT JOIN (SELECT COUNT(*)  as jumlah_suara, id_kandidat_pemilihan FROM srt_suara_masuk GROUP BY id_kandidat_pemilihan) c ON a.id_kandidat_pemilihan=c.id_kandidat_pemilihan
+            WHERE id_sesi_pemilihan='$id_sesi'";
 	$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 
 	$num = mysqli_num_rows($sql);

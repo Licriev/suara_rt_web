@@ -10,20 +10,22 @@
       </a>
   </li>
 
-  <?php $ref=array('dhs','dgp','dtc','dct');?>
-  <li class="sub-menu">
-      <a href="javascript:;" class="<?php echo (in_array($_GET['pg'], $ref) ? 'active' : '');?>">
-          <i class="fa fa-file-text"></i>
-          <span>Manajemen</span>
-      </a>
-      <ul class="sub">
-          <li><a href="?pg=dic">Icon</a></li>
-          <li><a href="?pg=dct">Kota</a></li>
-          <li><a href="?pg=dhs">Housing </a></li>
-          <li><a href="?pg=dgp">Group Housing</a></li>
-          <li><a href="?pg=dtc">Kategori Informasi</a></li>
-      </ul>
-  </li>
+  <?php if($_SESSION['role_usr']==1 || $_SESSION['role_usr']==2){ ?>
+    <?php $ref=array('dhs','dgp','dtc','dct','dic');?>
+    <li class="sub-menu">
+        <a href="javascript:;" class="<?php echo (in_array($_GET['pg'], $ref) ? 'active' : '');?>">
+            <i class="fa fa-file-text"></i>
+            <span>Manajemen</span>
+        </a>
+        <ul class="sub">
+            <li><a href="?pg=dic">Icon</a></li>
+            <li><a href="?pg=dct">Kota</a></li>
+            <li><a href="?pg=dhs">Housing </a></li>
+            <li><a href="?pg=dgp">Group Housing</a></li>
+            <li><a href="?pg=dtc">Kategori Informasi</a></li>
+        </ul>
+    </li>
+  <?php } ?>
 
   <li class="sub-menu">
       <a class="<?php echo ($_GET['pg']=='dusr' ? 'active' : '');?>" href="?pg=dusr">
@@ -51,6 +53,13 @@
       <a class="<?php echo ($_GET['pg']=='pkr' ? 'active' : '');?>" href="?pg=pkr">
           <i class="fa fa-comments-o"></i>
           <span>Pemilihan Ketua RT</span>
+      </a>
+  </li>
+
+  <li class="sub-menu">
+      <a class="<?php echo ($_GET['pg']=='lrt' ? 'active' : '');?>" href="?pg=lrt">
+          <i class="fa fa-comments-o"></i>
+          <span>Layanan RT</span>
       </a>
   </li>
 </ul>
