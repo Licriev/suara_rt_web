@@ -11,7 +11,7 @@
 	$nama = $_POST['nama'];
 	$no_ktp = $_POST['no_ktp'];
 	$tempat_lahir = $_POST['tempat_lahir'];
-	$tanggal_lahir = $_POST['tanggal_lahir'];
+	$tanggal_lahir = date('Y-m-d', strtotime($_POST['tanggal_lahir']));
 	$jenis_kelamin = $_POST['jenis_kelamin'];
 	$status_pernikahan = $_POST['status_pernikahan'];
 	$keperluan = $_POST['keperluan'];

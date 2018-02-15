@@ -5,10 +5,25 @@
 	$group = $_POST['group'];
 	$category = $_POST['category'];
 
-	$query = "SELECT a.*, b.nama as sender FROM srt_thread a
-				LEFT JOIN srt_warga b ON a.id_user = b.id_user
-				WHERE a.id_category='$category' AND a.id_group='$group'
-				ORDER BY id_thread DESC";
+	$page = $_POST['page'];
+
+	if($page=="archive"){
+
+		$query = "SELECT a.*, b.nama as sender FROM srt_thread a
+					LEFT JOIN srt_warga b ON a.id_user = b.id_user
+					WHERE a.id_category='$category' AND a.id_group='$group'
+					AND datediff(current_date,date(tanggal_post)) >  30
+					ORDER BY id_thread DESC";
+
+	}else{
+
+		$query = "SELECT a.*, b.nama as sender FROM srt_thread a
+					LEFT JOIN srt_warga b ON a.id_user = b.id_user
+					WHERE a.id_category='$category' AND a.id_group='$group'
+					AND tanggal_post BETWEEN NOW() - INTERVAL 30 DAY AND NOW()
+					ORDER BY id_thread DESC";
+
+	}
 	$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 
 	$num = mysqli_num_rows($sql);

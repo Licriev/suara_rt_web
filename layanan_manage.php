@@ -21,6 +21,7 @@
 						<th>Keperluan</th>
 						<th>Keterangan</th>
 						<th>Tanggal</th>
+						<th>Status</th>
 						<th>Options</th>
 					</tr>
 				</thead>
@@ -62,6 +63,7 @@
 		    	{"data":"keperluan"},
 		    	{"data":"detail_keperluan"},
 		    	{"data":"tanggal"},
+		    	{"data":"status"},
 		    	{"data":null,"defaultContent":""},
 		    ],
 		    columnDefs: [                
@@ -73,13 +75,25 @@
 		            "defaultContent": ""
 		        },
 		        {
+		        	"targets": 10,
+		        	"render":function(data,type,full,meta){
+
+		        		if(data==2){
+		        			return '<span class="label label-primary">Selesai</span>';
+		        		}
+
+		        		return '<span class="label label-warning">Pending</span>';
+
+		        	}
+		        },
+		        {
 		            "data":null,
 		            "width" : '10%',
-		            "targets": 10,
+		            "targets": 11,
 		            "render":function(data, type, full, meta ){
-		            	// var editWarga = '<button class="btn btn-info btn-xs edit-btn" title="edit data"><i class="fa fa-edit"></i></button> ';
+		            	var cetak = '<a href="surat.php?id='+full.id_layanan+'" class="btn btn-info btn-xs" title="Cetak Surat"><i class="fa fa-print"></i></a> ';
 		            	
-		            	return '<center>'+'</center>';
+		            	return '<center>'+cetak+'</center>';
 		            }
 		        },
 		    ],
@@ -109,8 +123,8 @@
             	    buttons: {
             	        confirm: function () {
             	            for (var i = 0; i <= count - 1; i++) {
-                                var did=item[i]['id_category'];
-                                $.post( 'thread_category_process.php?action=del&id=' + did).success(function(data){
+                                var did=item[i]['id_layanan'];
+                                $.post( 'layanan_process.php?action=del&id=' + did).success(function(data){
                                 	var result = jQuery.parseJSON(data);
 
                                 	tbl.ajax.reload(); 
@@ -159,37 +173,6 @@
 
 	});
 
-
-	function editData(){
-
-		$.ajax({
-		    url: 'user_process.php',
-		    type: 'POST',
-		    data: {
-		    	email: $('#email_edit').val(),
-		    	role: $('#role_edit').val(),
-		    	id_user: $('#id_user_edit').val(),
-		        action:'editlogin'
-		    },
-		    success: function(data){
-
-		    	var result = jQuery.parseJSON(data);
-
-		        document.getElementById("form_data_edit2").reset();
-		        select2trig();
-		        tbl.ajax.reload();
-		        $('#edit-modal2').modal('toggle');
-
-		        $.gritter.add({
-	                // (string | mandatory) the heading of the notification
-	                title: 'Ubah Data',
-	                sticky: false,
-                    time: '5000',
-                    text: result.msg,
-	            });
-		    }
-		});
-	}
 
 
 

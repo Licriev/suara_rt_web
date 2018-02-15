@@ -39,7 +39,7 @@
 
 			$id = $_GET['id'];
 
-			$query = "DELETE FROM srt_layanan WHERE id_kota='$id'";
+			$query = "DELETE FROM srt_layanan WHERE id_layanan='$id'";
 			$sql = mysqli_query($connect,$query);
 
 			
