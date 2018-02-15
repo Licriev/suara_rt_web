@@ -360,8 +360,7 @@
 		            "orderable": false,
 		            "className": 'select-checkbox',
 		            "targets": 0,
-		            "data":null,
-		            "defaultContent": ""
+		            "searchable": false
 		        },
 		        {
 		        	"targets":4,
@@ -388,6 +387,7 @@
 		            }
 		        },
 		    ],
+		    order:[1],
 		    select: {
 		        style:    'os',
 		        selector: 'td:first-child'
