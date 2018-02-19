@@ -137,6 +137,19 @@ Nomor : <?php echo $data_layanan['id_layanan'];?>/SKD/<?php echo $bulan[date('n'
 	<span>
 	Orang tersebut diatas, memang benar adalah warga RT. <?php echo sprintf('%03d', $data_group['rt']);?> RW. <?php echo sprintf('%03d', $data_group['rw']);?> Kelurahan <?php echo ucwords($data_housing['kelurahan']);?>  Kecamatan <?php echo ucwords($data_housing['kecamatan']);?>  Kota <?php echo ucwords($data_kota['nama_kota']);?>, Demikian surat pengantar ini kami buat agar dapat dipergunakan sebagaimana mestinya dan penuh tanggung jawab.</span> 
 </div>
+<br>
+<div align="center">
+	<span>
+	ketua RT <?php echo sprintf('%03d', $data_group['rt']);?> RW. <?php echo sprintf('%03d', $data_group['rw']);?></span> 
+</div>
+<br>
+<br>
+<br>
+<br>
+<div align="center">
+	<span>
+	BEKASI</span> 
+</div>
 </div>
 
 </td>   

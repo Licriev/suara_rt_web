@@ -30,12 +30,12 @@
 				echo json_encode(array('result' => false,'msg'=>'Gagal menambahkan data, email sudah terdaftar!'));
 			}else{
 				$query = "INSERT INTO srt_user VALUES('','$email','$password','$role','1')";
-				$sql = mysqli_query($connect,$query);
+				$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 
 				$id_user = mysqli_insert_id($connect);
 
 				$query = "INSERT INTO srt_warga VALUES('','$id_user','$nama','$jk','$tanggal_lahir','$blok','$no','$group','$ketua_rt')";
-				$sql = mysqli_query($connect,$query);
+				$sql = mysqli_query($connect,$query) or die(mysqli_error($connect));
 				if($sql){
 					echo json_encode(array('result' => true,'msg'=>'Data baru berhasil ditambah'));
 				}else{

@@ -1,11 +1,15 @@
 <?php
 	
+	date_default_timezone_set("Asia/Bangkok");
+	echo date('Y-m-d H:i');
 	include "../config/koneksi.php";
 
 	$id_group = $_POST['id_group'];
 	$id_user = $_POST['id_user'];
 	
-	$query = "SELECT * FROM srt_sesi_pemilihan WHERE id_group='$id_group'";
+	$now = date('Y-m-d H:i');
+
+	$query = "SELECT * FROM srt_sesi_pemilihan WHERE id_group='$id_group' AND tanggal_selesai>'$now'";
 	$sql = mysqli_query($connect,$query);
 
 	$num = mysqli_num_rows($sql);
