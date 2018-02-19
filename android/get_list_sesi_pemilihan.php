@@ -1,7 +1,7 @@
 <?php
 	
 	date_default_timezone_set("Asia/Bangkok");
-	echo date('Y-m-d H:i');
+	// echo date('Y-m-d H:i');
 	include "../config/koneksi.php";
 
 	$id_group = $_POST['id_group'];
