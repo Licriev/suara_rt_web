@@ -173,7 +173,10 @@
 
 			$id = $_GET['id'];
 
-			$query = "DELETE FROM srt_group WHERE id_warga='$id'";
+			$query = "DELETE FROM srt_user WHERE id_user='$id'";
+			$sql = mysqli_query($connect,$query);
+
+			$query = "DELETE FROM srt_warga WHERE id_user='$id'";
 			$sql = mysqli_query($connect,$query);
 
 			

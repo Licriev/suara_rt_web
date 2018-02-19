@@ -415,8 +415,8 @@
             	    buttons: {
             	        confirm: function () {
             	            for (var i = 0; i <= count - 1; i++) {
-                                var did=item[i]['id_category'];
-                                $.post( 'thread_category_process.php?action=del&id=' + did).success(function(data){
+                                var did=item[i]['id_user'];
+                                $.post( 'user_process.php?action=del&id=' + did).success(function(data){
                                 	var result = jQuery.parseJSON(data);
 
                                 	tbl.ajax.reload(); 
